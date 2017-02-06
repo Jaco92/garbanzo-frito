@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'HCHumanTouchLower';
+    src: url('../fonts/HCHumanTouchLower-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'HCHumanTouchUpper';
+    src: url('../fonts/HCHumanTouchUpper-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'HCCubanTouch';
+    src: url('../fonts/HCCubanTouch-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'HelveticaRegular';
+    src: url('../fonts/LTe52818.ttf');
+}
+
+.text_cuban {
+    font-family: 'HCCubanTouch';
+    font-weight: normal;
+    font-size: 8vh;
+}
+
+.text_cuban.medium {
+    font-size: 6vh;
+}
+
+.text_cuban.small {
+    font-size: 4vh;
+}
+
+.text_human {
+    font-family: 'HCHumanTouchLower';
+    font-weight: normal;
+    font-size: 5.5vh;
+}
+
+.text_human.medium {
+    font-size: 4vh;
+}
+
+.text_human.small {
+    font-size: 3vh;
+}
+
+.text_human_upper {
+    font-family: 'HCHumanTouchUpper';
+    font-weight: normal;
+    font-size: 6vh;
+}
+
+.text_human_upper.medium {
+    font-size: 5vh;
+}
+
+.text_human_upper.small {
+    font-size: 3vh;
+}
+
+.text_normal {
+    font-family: 'HelveticaRegular';
+    font-weight: normal;
+    font-size: 4vh;
+}
+
+.text_normal.medium {
+    font-size: 3vh;
+}
+
+.text_normal.small {
+    font-size: 2vh;
+}
+
+.blue {
+    color: #17a0ca;
+}
+
+.red {
+    color: #e32f0e;
+}
+
+.small_margin {
+    padding-left: 2vw;
+}
+
+.medium_margin {
+    padding-left: 4vw;
+}
+
+.big_margin {
+    padding-left: 6vw;
+}

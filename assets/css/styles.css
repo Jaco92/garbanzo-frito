@@ -1,0 +1,9 @@
+
+.vertical_middle{
+    position: relative;
+    top: 50%;
+}
+
+#right_menu_container .col_7{
+	min-width: inherit!important;
+}
