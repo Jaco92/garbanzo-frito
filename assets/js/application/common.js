@@ -84,3 +84,8 @@ function initWow() {
     );
     wow.init();
 }
+
+function fixImgDiapoRoute() {    
+    
+    
+}

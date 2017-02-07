@@ -29,7 +29,8 @@ var app = {
     },
 
     //Este evento es lanzado cuando se carga una diapositiva
-    onLoadDiapo: function(){              
+    onLoadDiapo: function(){
+
         launchAnimation();//Tras cargar la diapositiva activo las animaciones        
     },
 
@@ -60,14 +61,19 @@ var app = {
     
     //Cargar diapositiva a partir del tema, la conferencia y el # de diapo
     loadDiapo: function (theme, conference, diapo) {
-        this.setCurrTheme(theme);//actualizo el tema
-        this.setCurrConference(conference);//actualizo la conferencia
-        this.setCurrDiapo(diapo);//actualizo el # de diapositiva        
         this.setCurrDiapoRoute(getDiapoRoute(theme,conference,diapo));//actualizo la ruta
         //Cargo en el contenedor actual la diapositiva indicada
-        this.currContainer.jQObject.load(app.currDiapoRoute, function(response, status, xhr){            
-            app.onLoadDiapo();//Aviso a la app que se acaba de cargar una diapo
+        this.currContainer.jQObject.load(app.currDiapoRoute, function(response, status, xhr){
+            if (status == 'success'){
+                this.setCurrTheme(theme);//actualizo el tema
+                this.setCurrConference(conference);//actualizo la conferencia
+                this.setCurrDiapo(diapo);//actualizo el # de diapositiva
+                app.onLoadDiapo();//Aviso a la app que se acaba de cargar una diapo
+            }
+            else console.log(status);
+
         });
+
     },
 
     setCurrTheme: function (currTheme) {
