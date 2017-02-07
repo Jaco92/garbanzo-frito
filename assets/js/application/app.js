@@ -66,9 +66,9 @@ var app = {
         //Cargo en el contenedor actual la diapositiva indicada
         this.currContainer.jQObject.load(app.currDiapoRoute, function(response, status, xhr){
             if (status == 'success'){
-                this.setCurrTheme(theme);//actualizo el tema
-                this.setCurrConference(conference);//actualizo la conferencia
-                this.setCurrDiapo(diapo);//actualizo el # de diapositiva
+                app.setCurrTheme(theme);//actualizo el tema
+                app.setCurrConference(conference);//actualizo la conferencia
+                app.setCurrDiapo(diapo);//actualizo el # de diapositiva
                 app.onLoadDiapo();//Aviso a la app que se acaba de cargar una diapo
             }
             else console.log(status);

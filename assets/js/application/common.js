@@ -34,6 +34,10 @@ return parts[0]+'Out'+parts[1];
 
 //Devuelve la ruta de una diapositiva
 function getDiapoRoute(theme, conference, diapo){
+    (parseInt(diapo) < 10 ? '0'+diapo : diapo);
+    if (parseInt(diapo)<10){
+        diapo = '0'+diapo;
+    }
   var diapoRoute = 'content/temas/' + 't' + theme + '/' + 'c' + conference + '/' + 'd' + diapo + '/' + 'index.html';
   return diapoRoute;
 }
@@ -87,11 +91,12 @@ function initWow() {
 
 function fixImgDiapoRoute($diapoContainer) {
 
-    $diapoContainer.find('im').each(function () {
-        var route = $(this).attr('src');
+    $diapoContainer.find('img').each(function () {
+        var route = $j(this).attr('src');
+        console.log(route);
         if (route.split('/')[0]!='content'){
-            route = 'content'+route;
-            $(this).attr('src', route);
+            route = 'content/'+route;
+            $j(this).attr('src', route);
         }
         }
 
