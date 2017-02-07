@@ -85,7 +85,18 @@ function initWow() {
     wow.init();
 }
 
-function fixImgDiapoRoute() {    
+function fixImgDiapoRoute($diapoContainer) {
+
+    $diapoContainer.find('im').each(function () {
+        var route = $(this).attr('src');
+        if (route.split('/')[0]!='content'){
+            route = 'content'+route;
+            $(this).attr('src', route);
+        }
+        }
+
+    );
+
     
     
 }

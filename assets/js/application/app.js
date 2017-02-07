@@ -31,7 +31,8 @@ var app = {
     //Este evento es lanzado cuando se carga una diapositiva
     onLoadDiapo: function(){
 
-        launchAnimation();//Tras cargar la diapositiva activo las animaciones        
+        launchAnimation();//Tras cargar la diapositiva activo las animaciones     
+        fixImgDiapoRoute(this.currContainer.jQObject);
     },
 
     closeDiapo: function(){
@@ -71,7 +72,6 @@ var app = {
                 app.onLoadDiapo();//Aviso a la app que se acaba de cargar una diapo
             }
             else console.log(status);
-
         });
 
     },
