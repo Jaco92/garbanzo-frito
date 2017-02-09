@@ -955,6 +955,31 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     animation-name: fadeIn;
 }
 
+@-webkit-keyframes fadeInTransparent {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes fadeInTransparent {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.fadeInTransparent {
+    -webkit-animation-name: fadeInTransparent;
+    animation-name: fadeInTransparent;
+}
+
 @-webkit-keyframes fadeInDown {
     0% {
         opacity: 0;
@@ -1258,6 +1283,31 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .fadeOut {
     -webkit-animation-name: fadeOut;
     animation-name: fadeOut;
+}
+
+@-webkit-keyframes fadeOutTransparent {
+    0% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOutTransparent {
+    0% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.fadeOutTransparent {
+    -webkit-animation-name: fadeOutTransparent;
+    animation-name: fadeOutTransparent;
 }
 
 @-webkit-keyframes fadeOutDown {

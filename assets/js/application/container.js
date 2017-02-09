@@ -16,37 +16,66 @@ var container = {
 
     hide: function (animation) {
 
-        if (this.kind == 'diapo') {
-            this.jQObject.addClass('hidden');
-        }
-        else {
+        var currContainer = '';
+        var id = this.jQObject.attr('id');
+        switch (id) {
+            case 'launcher_right_menu': {
 
-            if (!this.jQObject.hasClass('wow')) {
-                this.jQObject.addClass('wow');
+                /**
+                 * TODO: Si se agrega la clase wow aqui da un brinco la animacion
+                 */
+                // if (!this.jQObject.hasClass('wow')) {
+                //     this.jQObject.addClass('wow');
+                // }
+                if (!this.jQObject.hasClass('animated')) {
+                    this.jQObject.addClass('animated');
+                }
+
+                this.jQObject.removeClass('fadeInTransparent');
+                this.jQObject.addClass('fadeOutTransparent');
+                currContainer = this.jQObject;
+                timer(1100, function () {
+                //     currContainer.removeClass('wow');
+                    currContainer.removeClass('animated');
+                    currContainer.addClass('hidden');
+                });
+                break;
             }
-            if (!this.jQObject.hasClass('animated')) {
-                this.jQObject.addClass('animated');
+            case 'right_menu_container': {
+
+                if (!this.jQObject.hasClass('wow')) {
+                    this.jQObject.addClass('wow');
+                }
+                if (!this.jQObject.hasClass('animated')) {
+                    this.jQObject.addClass('animated');
+                }
+
+                var realAnimationIn = getClassAnimationIn(animation);
+                var realAnimationOut = getClassAnimationOut(animation);
+                this.jQObject.removeClass(realAnimationIn);
+                this.jQObject.css('animation-name', realAnimationOut);
+                this.jQObject.addClass(realAnimationOut);
+                currContainer = this.jQObject;
+                timer(1100, function () {
+                    container.jQObject.removeClass('wow');
+                    container.jQObject.removeClass('animated');
+                    currContainer.addClass('hidden');
+                });
+
+                $backdrop = $j('#overlay');
+                $backdrop.removeClass('overlay');
+
+                $launcher_menu = $j('#launcher_rigth_menu');
+                $launcher_menu.removeClass('launcher_rigth_menu_opacity');
+
+                break;
             }
-
-            var realAnimationIn = getClassAnimationIn(animation);
-            var realAnimationOut = getClassAnimationOut(animation);
-            this.jQObject.removeClass(realAnimationIn);
-            this.jQObject.css('animation-name', realAnimationOut);
-            this.jQObject.addClass(realAnimationOut);
-            var currContainer = this.jQObject;
-            timer(1100, function () {
-                container.jQObject.removeClass('wow');
-                container.jQObject.removeClass('animated');
-                currContainer.addClass('hidden');
-            });
-
-            $backdrop = $j('#overlay');
-            $backdrop.removeClass('overlay');
-
-            $launcher_menu = $j('#launcher_rigth_menu');
-            $launcher_menu.removeClass('launcher_rigth_menu_opacity');
-
+            case 'diapo_container': {
+                this.jQObject.addClass('hidden');
+                break;
+            }
         }
+
     },
 
 
@@ -54,6 +83,23 @@ var container = {
 
         var id = this.jQObject.attr('id');
         switch (id) {
+            case 'launcher_right_menu': {
+                this.jQObject.removeClass('hidden');
+                if (!this.jQObject.hasClass('wow')) {
+                    this.jQObject.addClass('wow');
+                }
+                if (!this.jQObject.hasClass('animated')) {
+                    this.jQObject.addClass('animated');
+                }
+                this.jQObject.removeClass('fadeOutTransparent');
+                this.jQObject.addClass('fadeInTransparent');
+                timer(1000, function () {
+                    container.jQObject.removeClass('wow');
+                    container.jQObject.removeClass('animated');
+                });
+
+                break;
+            }
             case 'right_menu_container': {
                 this.jQObject.removeClass('hidden');
                 if (!this.jQObject.hasClass('wow')) {
@@ -86,6 +132,10 @@ var container = {
             }
         }
 
+    },
+
+    initLauncherMenuContainer: function () {
+        this.init('launcher_menu', '#launcher_right_menu');
     },
 
     initDiapoContainer: function () {

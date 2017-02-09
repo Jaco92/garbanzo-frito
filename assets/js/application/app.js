@@ -1,5 +1,6 @@
 var app = {
 
+    currCategory: '', //Categoria actual
     currTheme: '', //Tema actual cargado
     currConference: '', //Clase actual cargado
     currDiapo: '', //Diapositiva actual gargada
@@ -43,7 +44,7 @@ var app = {
         this.loadThemeSelector();
 
         //listeners.keyPressed();
-        isVisible('#right_menu_container');
+        // isVisible('#right_menu_container');
 
         initWow();
 
@@ -67,6 +68,18 @@ var app = {
         container.initDiapoContainer();
         fixImgDiapoRoute(container.jQObject);
         initWow();
+        /**
+         * TODO: Revisa esto
+         * Supuestamente es mostrar el menu_launcher cuando se carga la diapo
+         * si no esta mostrado, pero tiene problemas
+         */
+        if (!isVisible('#launcher_right_menu')){
+            container.initLauncherMenuContainer();
+            container.show('');
+            console.log('no is visible');
+        }
+        else
+            console.log('is visible');
     },
 
     closeDiapo: function () {
@@ -74,7 +87,6 @@ var app = {
         this.setCurrConference('');
         this.setCurrDiapo('');
         listeners.offChangeDiapo();
-
     },
 
     closeTheme: function () {
@@ -147,11 +159,12 @@ var app = {
         });
     },
 
-    loadCategory: function (theme) {
+    loadCategory: function (category) {
         container.initDiapoContainer();
-        container.jQObject.load('views/category_' + theme + '.html', function (response, status, xhr) {
+        container.jQObject.load('views/category_' + category + '.html', function (response, status, xhr) {
             if (status == 'success') {
-                app.setCurrTheme(theme);//actualizo el tema
+                app.setCurrCategory(category);//actualizo la categoria
+                app.setCurrTheme('');//actualizo el tema
                 app.setCurrConference('');//actualizo la conferencia
                 app.setCurrDiapo('');//actualizo el # de diapositiva
                 app.setCurrDiapoRoute('');//actualizo la ruta
@@ -181,6 +194,9 @@ var app = {
     },
     setCurrView: function (currView) {
         this.currView = currView;
+    },
+    setCurrCategory: function (currCategory) {
+        this.currCategory = currCategory;
     }
 
 

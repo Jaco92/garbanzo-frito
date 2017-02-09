@@ -31,7 +31,7 @@ var listeners = {
     },
 
     menuButtonClick: function () {
-        $j('#launcher_rigth_menu').click(function () {
+        $j('#launcher_right_menu').click(function () {
             if (isVisible('#right_menu_container')) {
                 app.closeRightMenuContainer('slide-Right');
             }

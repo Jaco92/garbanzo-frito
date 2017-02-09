@@ -29,7 +29,7 @@
     z-index: 1;
 }
 
-#launcher_rigth_menu {
+#launcher_right_menu {
     transition: opacity 0.3s ease 0s;
     z-index: 1000 !important;
     width: 14.2857% !important;
@@ -40,7 +40,7 @@
     opacity: 0.5;
 }
 
-#launcher_rigth_menu:hover {
+#launcher_right_menu:hover {
     cursor: pointer;
     opacity: 1;
     transition: opacity 0.3s ease 0s;
