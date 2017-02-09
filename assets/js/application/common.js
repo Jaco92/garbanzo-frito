@@ -196,7 +196,7 @@ function effectMainView() {
             function () {
                 var id = $j(this).attr('id');
                 var id_number = id.split('_')[2];
-                app.loadTheme(id_number);
+                app.loadCategory(id_number);
             }
         );
 

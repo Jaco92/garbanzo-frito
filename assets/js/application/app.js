@@ -147,9 +147,9 @@ var app = {
         });
     },
 
-    loadTheme: function (theme) {
+    loadCategory: function (theme) {
         container.initDiapoContainer();
-        container.jQObject.load('views/theme_' + theme + '.html', function (response, status, xhr) {
+        container.jQObject.load('views/category_' + theme + '.html', function (response, status, xhr) {
             if (status == 'success') {
                 app.setCurrTheme(theme);//actualizo el tema
                 app.setCurrConference('');//actualizo la conferencia
