@@ -1,4 +1,3 @@
-
 /*Objeto para los containers de forma generalizada*/
 var container = {
 
@@ -7,43 +6,94 @@ var container = {
     id: '', //Id del container en el DOM en formato #id
 
     //Inicializando el container
-    init: function(kind, id){
+    init: function (kind, id) {
         this.setKind(kind);
         this.setId(id);
         var $jQObject = $j(id);
         this.setjQObject($jQObject);
+        return this;
     },
-    hide : function(animation){
-        
-        if (!this.jQObject.hasClass('wow')){
-        this.jQObject.addClass('wow');        
+
+    hide: function (animation) {
+
+        if (this.kind == 'diapo') {
+            this.jQObject.addClass('hidden');
         }
-        if (!this.jQObject.hasClass('animated')){
-        this.jQObject.addClass('animated');        
+        else {
+
+            if (!this.jQObject.hasClass('wow')) {
+                this.jQObject.addClass('wow');
+            }
+            if (!this.jQObject.hasClass('animated')) {
+                this.jQObject.addClass('animated');
+            }
+
+            var realAnimationIn = getClassAnimationIn(animation);
+            var realAnimationOut = getClassAnimationOut(animation);
+            this.jQObject.removeClass(realAnimationIn);
+            this.jQObject.css('animation-name', realAnimationOut);
+            this.jQObject.addClass(realAnimationOut);
+            var currContainer = this.jQObject;
+            timer(1100, function () {
+                container.jQObject.removeClass('wow');
+                container.jQObject.removeClass('animated');
+                currContainer.addClass('hidden');
+            });
+
+            $backdrop = $j('#overlay');
+            $backdrop.removeClass('overlay');
+
+            $launcher_menu = $j('#launcher_rigth_menu');
+            $launcher_menu.removeClass('launcher_rigth_menu_opacity');
+
         }
-        
-        var realAnimationIn = getClassAnimationIn(animation);
-        var realAnimationOut = getClassAnimationOut(animation);
-        this.jQObject.removeClass(realAnimationIn);        
-        this.jQObject.css('animation-name', realAnimationOut);
-        //this.jQObject.css('z-index', '-1');
-        this.jQObject.addClass(realAnimationOut);        
+    },
+
+
+    show: function (animation) {
+
+        var id = this.jQObject.attr('id');
+        switch (id) {
+            case 'right_menu_container': {
+                this.jQObject.removeClass('hidden');
+                if (!this.jQObject.hasClass('wow')) {
+                    this.jQObject.addClass('wow');
+                }
+                if (!this.jQObject.hasClass('animated')) {
+                    this.jQObject.addClass('animated');
+                }
+                var realAnimationIn = getClassAnimationIn(animation);
+                var realAnimationOut = getClassAnimationOut(animation);
+                this.jQObject.removeClass(realAnimationOut);
+                this.jQObject.css('animation-name', realAnimationIn);
+                this.jQObject.addClass(realAnimationIn);
+                timer(1100, function () {
+                    container.jQObject.removeClass('wow');
+                    container.jQObject.removeClass('animated');
+                });
+
+                $backdrop = $j('#overlay');
+                $backdrop.addClass('overlay');
+
+                $launcher_menu = $j('#launcher_rigth_menu');
+                $launcher_menu.addClass('launcher_rigth_menu_opacity');
+
+                break;
+            }
+            case 'diapo_container': {
+                this.jQObject.removeClass('hidden');
+                break;
+            }
+        }
 
     },
-    show : function(animation){        
 
+    initDiapoContainer: function () {
+        this.init('diapo', '#diapo_container');
+    },
 
-        if (!this.jQObject.hasClass('wow')){
-        this.jQObject.addClass('wow');        
-        }
-        if (!this.jQObject.hasClass('animated')){
-        this.jQObject.addClass('animated');        
-        }
-        var realAnimationIn = getClassAnimationIn(animation);
-        var realAnimationOut = getClassAnimationOut(animation);
-        this.jQObject.removeClass(realAnimationOut);
-        this.jQObject.css('animation-name', realAnimationIn);          
-        this.jQObject.addClass(realAnimationIn);
+    initRigthMenuContainer: function () {
+        this.init('menu', '#right_menu_container');
     },
 
     setKind: function (kind) {
@@ -55,5 +105,6 @@ var container = {
     setjQObject: function ($jQObject) {
         this.jQObject = $jQObject;
     }
+
 
 };

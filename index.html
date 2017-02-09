@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="assets/css/customs_fonts.css">
     <link rel="stylesheet" href="assets/css/grid_layout.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/animate.css">
@@ -9,37 +10,49 @@
     <title>Habana Club Multimedia</title>
 </head>
 <body>
-<div class="container" id="background"></div>
+
+<div class="container" id="background">
+    <div id="overlay"></div>
+</div>
 
 <div class="container hidden" id="right_menu_container">
-<div class="row_4">        
-        <div class="col_7 vertical_middle">
+    <div class="row_4">
 
-<h3>This menu has vertical_middle class</h3>
-    <ul id="rigth_menu">
-        <li>Test Item1</li>
-        <li>Test Item2</li>
-        <li>Test Item3</li>
-        <li class="close"><a href="#">Click to close menu</a></li>
-    </ul>
+        <div id="backdrop" class="col_4">
+
+        </div>
+        <div class="col_3">
+            <h3>This menu has vertical_middle class</h3>
+            <ul id="rigth_menu">
+                <li>Test Item1</li>
+                <li>Test Item2</li>
+                <li id="open_diapo"><a href="#">Open Diapo</a></li>
+                <li id="close_diapo"><a href="#">Close Diapo</a></li>
+                <li class="close"><a href="#">Click to close menu</a></li>
+            </ul>
+        </div>
+
+
     </div>
 </div>
 
+<div class="container" id="launcher_rigth_menu">
+
+    <img src="assets/img/logo.png">
+
 </div>
+
 
 <div class="container" id="diapo_container">
-    <div class="row_4">
-        <div class="col_6 vertical_middle">
-            <h3 data-order="2" class="wow animated bounceIn text_center vertical">Doble click to every where to open rigth menu</h3>
-        </div>
-        <div class="col_1">
-            <h3 data-order="1" class="wow animated bounceOut text_center">Order animation 1</h3>
-        </div>
+    <div class="row_2 row_pull_1 col_3 col_offset_2">
+        <img id="image_player" class="image_text center_vertical center_horizontal"
+             src="assets/img/intro/havanaclub_00035.png">
     </div>
+
 </div>
 
 <footer>
- 
+
 
     <!-- Libraries scripts -->
     <script type="text/javascript" src="assets/js/libraries/jquery-1.11.3.min.js"></script>
@@ -55,7 +68,7 @@
     <script type="text/javascript" src="assets/js/application/app.js"></script>
     <script type="text/javascript" src="assets/js/application/main.js"></script>
     <!-- ******************** -->
-    
+
 </footer>
 </body>
 </html>
