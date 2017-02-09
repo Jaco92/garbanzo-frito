@@ -22,21 +22,31 @@ function resizeImg() {
     var defaultWidth = 1333;
     var defaultHeight = 768;
 
-    /*
-     * TODO: Obtener las dimensiones reales de la imagen .png
-     */
-    var imageWidth = 784;
-    var imageHeight = 158;
-
     $j('.image_text').each(function () {
 
         var $element = $j(this);
+
+        var imageWidth = getOriginalWidthOfImg($element);
+        var imageHeight = getOriginalHeightOfImg($element);
+
         var newWidth = imageWidth / defaultWidth * $j(window).width();
         var newHeight = imageHeight / defaultHeight * $j(window).height();
 
         $element.width(newWidth);
         $element.height(newHeight);
     });
+}
+
+function getOriginalWidthOfImg($img_element) {
+    var image = new Image();
+    image.src = $img_element.attr("src");
+    return image.width;
+}
+
+function getOriginalHeightOfImg($img_element) {
+    var image = new Image();
+    image.src = $img_element.attr("src");
+    return image.height;
 }
 
 //Recibe una animación de entrada y devuelve la clase real de animate.css
