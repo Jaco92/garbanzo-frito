@@ -32,6 +32,7 @@ var container = {
                 }
 
                 this.jQObject.removeClass('fadeInTransparent');
+                this.jQObject.css('animation-name', 'fadeOutTransparent');
                 this.jQObject.addClass('fadeOutTransparent');
                 currContainer = this.jQObject;
                 timer(1100, function () {
@@ -92,6 +93,7 @@ var container = {
                     this.jQObject.addClass('animated');
                 }
                 this.jQObject.removeClass('fadeOutTransparent');
+                this.jQObject.css('animation-name', 'fadeInTransparent');
                 this.jQObject.addClass('fadeInTransparent');
                 timer(1000, function () {
                     container.jQObject.removeClass('wow');

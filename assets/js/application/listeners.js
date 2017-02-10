@@ -41,6 +41,38 @@ var listeners = {
         });
     },
 
+    categoryImageClick: function () {
+        $j('.category_selector').click(function (eventObject) {
+            var $current = eventObject.currentTarget;
+            switch ($current.id){
+                case '_1': {
+                    app.loadCategoryFragment(app.currCategory, 1);
+                    break;
+                }
+                case '_2': {
+                    app.loadCategoryFragment(app.currCategory, 2);
+                    break;
+                }
+                case '_3': {
+                    app.loadCategoryFragment(app.currCategory, 3);
+                    break;
+                }
+                case '_4': {
+                    app.loadCategoryFragment(app.currCategory, 4);
+                    break;
+                }
+                case '_5': {
+                    app.loadCategoryFragment(app.currCategory, 5);
+                    break;
+                }
+                case '_6': {
+                    app.loadCategoryFragment(app.currCategory, 6);
+                    break;
+                }
+            }
+        });
+    },
+
     backdropListener: function () {
         $j('#backdrop').click(function () {
             app.closeRightMenuContainer('slide-Right');
@@ -51,7 +83,6 @@ var listeners = {
 
         // if(app.currDiapo != ''){
         $j('body').keydown(function (event) {
-            console.log('diapochanged');
 
             switch (event.which) {
                 case 37: { //back cursor

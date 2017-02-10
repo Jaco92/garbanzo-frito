@@ -37,6 +37,7 @@ var app = {
         listeners.l2();
         listeners.l3();
         listeners.l4();
+
         listeners.changeDiapo();
         listeners.menuButtonClick();
         listeners.backdropListener();
@@ -73,20 +74,20 @@ var app = {
          * Supuestamente es mostrar el menu_launcher cuando se carga la diapo
          * si no esta mostrado, pero tiene problemas
          */
-        if (!isVisible('#launcher_right_menu')){
-            container.initLauncherMenuContainer();
-            container.show('');
-            console.log('no is visible');
-        }
-        else
-            console.log('is visible');
+        // if (!isVisible('#launcher_right_menu')){
+        //     container.initLauncherMenuContainer();
+        //     container.show('');
+        //     console.log('no is visible');
+        // }
+        // else
+        //     console.log('is visible');
     },
 
     closeDiapo: function () {
         this.closeDiapoContainer('slide-Right');
         this.setCurrConference('');
         this.setCurrDiapo('');
-        listeners.offChangeDiapo();
+        // listeners.offChangeDiapo();
     },
 
     closeTheme: function () {
@@ -128,20 +129,41 @@ var app = {
 
     //Cargar diapositiva a partir del tema, la conferencia y el # de diapo
     loadDiapo: function (theme, conference, diapo) {
-        route = getDiapoRoute(theme, conference, diapo);
-        //Cargo en el contenedor actual la diapositiva indicada
         container.initDiapoContainer();
-        console.log(container.jQObject);
-        container.jQObject.load(route, function (response, status, xhr) {
-            if (status == 'success') {
-                app.setCurrTheme(theme);//actualizo el tema
-                app.setCurrConference(conference);//actualizo la conferencia
-                app.setCurrDiapo(diapo);//actualizo el # de diapositiva
-                app.setCurrDiapoRoute(route);//actualizo la ruta
-                app.openDiapoContainer('slide-Right');
-                app.onLoadDiapo();//Aviso a la app que se acaba de cargar una diapo
-                resizeImg();
-            }
+        var delayOut = 0; //boolean para demorar la salida de la diapositiva en false
+        if (this.currDiapo){
+            container.jQObject.find('.animateOut').each(function () {
+                delayOut = 1; //demorar la salida si se encontro alguna animateOut
+                $current = $j(this);
+
+                //definir una animacion de salida para todos los elementos que tengan la clase animateOut
+                if (!$current.hasClass('wow'))
+                    $current.addClass('wow');
+                if (!$current.hasClass('animated'))
+                    $current.addClass('animated');
+                $current.removeClass('lightSpeedIn');
+                $current.css('animation-name', 'lightSpeedOut');
+                $current.addClass('hinge');
+
+            })
+        }
+
+        timer((delayOut ? 1000 : 1), function () {//si hay animacion de salida demorar la carga siguiente
+
+            route = getDiapoRoute(theme, conference, diapo);
+            //Cargo en el contenedor actual la diapositiva indicada
+            container.jQObject.load(route, function (response, status, xhr) {
+                if (status == 'success') {
+                    app.setCurrTheme(theme);//actualizo el tema
+                    app.setCurrConference(conference);//actualizo la conferencia
+                    app.setCurrDiapo(diapo);//actualizo el # de diapositiva
+                    app.setCurrDiapoRoute(route);//actualizo la ruta
+                    app.openDiapoContainer('slide-Right');
+                    app.onLoadDiapo();//Aviso a la app que se acaba de cargar una diapo
+                    resizeImg();
+                }
+            });
+
         });
     },
 
@@ -168,10 +190,27 @@ var app = {
                 app.setCurrConference('');//actualizo la conferencia
                 app.setCurrDiapo('');//actualizo el # de diapositiva
                 app.setCurrDiapoRoute('');//actualizo la ruta
+                listeners.categoryImageClick();
                 resizeImg();
             }
         });
 
+    },
+
+    /**
+     * Cargar el tema dentro de una categoria
+     *
+     * @param category numero que identifica la categoria (1-6)
+     * @param categoryElement elemento que identifica el tema que se desea cargar en la categoria
+     */
+    loadCategoryFragment: function (category, categoryElement) {
+        container.initDiapoContainer();
+        container.jQObject.find('.category_container').load('views/category_'+category+'/element_'+categoryElement+'.html', //seleccionar el container de la categoria
+            function (response, status, xhr) {
+            if (status == 'success') {
+                resizeImg();
+            }
+        });
     },
 
     setCurrTheme: function (currTheme) {

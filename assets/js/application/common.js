@@ -26,6 +26,10 @@ function resizeImg() {
 
         var $element = $j(this);
 
+        /**
+         * TODO: Verificar estos dos metodos bajo
+         * alguna circunstancia retornan 0
+         */
         var imageWidth = getOriginalWidthOfImg($element);
         var imageHeight = getOriginalHeightOfImg($element);
 
@@ -161,7 +165,6 @@ function fixImgDiapoRoute($diapoContainer) {
                 route = 'content/' + route;
                 $j(this).attr('src', route);
             }
-            console.log(route);
         }
     );
 
@@ -205,7 +208,6 @@ function effectMainView() {
 
         var $texto = $j('#text_index_' + id_number);
         $j(this).data('text', $texto);
-        console.log($j(this).data('text'));
     });
 }
 
@@ -225,7 +227,6 @@ function hideAllimages($current) {
         $j(this).addClass('hidden');
         // $j(this).fadeOut('fast');
     });
-    console.log($current.attr('id'));
     // $current.fadeIn('fast');
     $current.removeClass('hidden');
     $texto = $current.data('text');
@@ -279,7 +280,6 @@ function reorderHoverOut($current) {
 
 function isVisible(id) {
     var $element = $j(id + ':' + 'visible');
-    console.log($element);
     if ($element.length)
         return true;
     else
