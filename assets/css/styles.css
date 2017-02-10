@@ -1,4 +1,3 @@
-
 #right_menu_container .col_7 {
     min-width: inherit !important;
 }
@@ -54,4 +53,8 @@
 .image:hover img {
     cursor: pointer;
     box-shadow: 3px 2px 2px 2px rgba(139, 27, 23, 0.46) !important;
+}
+
+.category_selector{
+    z-index: 250;
 }

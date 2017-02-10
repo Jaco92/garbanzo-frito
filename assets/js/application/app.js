@@ -87,7 +87,7 @@ var app = {
         this.closeDiapoContainer('slide-Right');
         this.setCurrConference('');
         this.setCurrDiapo('');
-        // listeners.offChangeDiapo();
+        listeners.offChangeDiapo();
     },
 
     closeTheme: function () {
@@ -191,6 +191,7 @@ var app = {
                 app.setCurrDiapo('');//actualizo el # de diapositiva
                 app.setCurrDiapoRoute('');//actualizo la ruta
                 listeners.categoryImageClick();
+                listeners.categorySelectorHover();
                 resizeImg();
             }
         });

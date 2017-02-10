@@ -131,6 +131,36 @@ var listeners = {
                 }
             });
 
+    },
+
+    //animar los elementos category_selector (rotar las imagenes en el hover)
+    categorySelectorHover: function () {
+        $j('.category_selector').each(function () {
+            $this = $j(this);
+            $this.hover(
+                function () {
+                    $j(this).css('z-index', '500');
+                    if (!$j(this).hasClass('wow'))
+                        $j(this).addClass('wow');
+                    if (!$j(this).hasClass('animated'))
+                        $j(this).addClass('animated');
+                    $j(this).removeClass('rotateIn');
+                    $j(this).css('animation-name', 'flip');
+                    $j(this).addClass('flip');
+                },
+
+                function () {
+                    $j(this).css('z-index', '250');
+                    if (!$j(this).hasClass('wow'))
+                        $j(this).addClass('wow');
+                    if (!$j(this).hasClass('animated'))
+                        $j(this).addClass('animated');
+                    $j(this).removeClass('tada');
+                    $j(this).css('animation-name', 'rotateIn');
+                    $j(this).addClass('rotateIn');
+                }
+            );
+        });
     }
 
 

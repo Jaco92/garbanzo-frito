@@ -26,31 +26,17 @@ function resizeImg() {
 
         var $element = $j(this);
 
-        /**
-         * TODO: Verificar estos dos metodos bajo
-         * alguna circunstancia retornan 0
-         */
-        var imageWidth = getOriginalWidthOfImg($element);
-        var imageHeight = getOriginalHeightOfImg($element);
+        var image = new Image();
+        image.src = $element.attr('src');
+        image.onload = function () { //esperar por la carga de la imagen para obtener sus dimensiones y redimensionarla
+            var newWidth = this.width / defaultWidth * $j(window).width();
+            var newHeight = this.height / defaultHeight * $j(window).height();
 
-        var newWidth = imageWidth / defaultWidth * $j(window).width();
-        var newHeight = imageHeight / defaultHeight * $j(window).height();
+            $element.width(newWidth);
+            $element.height(newHeight);
+        };
 
-        $element.width(newWidth);
-        $element.height(newHeight);
     });
-}
-
-function getOriginalWidthOfImg($img_element) {
-    var image = new Image();
-    image.src = $img_element.attr("src");
-    return image.width;
-}
-
-function getOriginalHeightOfImg($img_element) {
-    var image = new Image();
-    image.src = $img_element.attr("src");
-    return image.height;
 }
 
 //Recibe una animación de entrada y devuelve la clase real de animate.css
