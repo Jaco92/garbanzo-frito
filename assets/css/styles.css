@@ -45,7 +45,7 @@
     transition: opacity 0.3s ease 0s;
 }
 
-.launcher_rigth_menu_opacity {
+.launcher_right_menu_opacity {
     opacity: 1 !important;
     transition: opacity 0.3s ease 0s;
 }
@@ -57,4 +57,11 @@
 
 .category_selector{
     z-index: 250;
+}
+
+.menu_text {
+    padding-right: 15%;
+    padding-left: 15%;
+    font-size: 4vh !important;
+    cursor: pointer;
 }

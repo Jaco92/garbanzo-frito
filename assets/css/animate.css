@@ -1797,6 +1797,62 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     animation-name: flipInY;
 }
 
+@-webkit-keyframes slowFlipInY {
+    0% {
+        -webkit-transform: perspective(1000px) rotateY(90deg);
+        transform: perspective(1000px) rotateY(90deg);
+    }
+
+    40% {
+        -webkit-transform: perspective(1000px) rotateY(-10deg);
+        transform: perspective(1000px) rotateY(-10deg);
+    }
+
+    70% {
+        -webkit-transform: perspective(1000px) rotateY(10deg);
+        transform: perspective(1000px) rotateY(10deg);
+    }
+
+    100% {
+        -webkit-transform: perspective(1000px) rotateY(0deg);
+        transform: perspective(1000px) rotateY(0deg);
+    }
+}
+
+@keyframes slowFlipInY {
+    0% {
+        -webkit-transform: perspective(1000px) rotateY(90deg);
+        -ms-transform: perspective(1000px) rotateY(90deg);
+        transform: perspective(1000px) rotateY(90deg);
+    }
+
+    40% {
+        -webkit-transform: perspective(1000px) rotateY(-10deg);
+        -ms-transform: perspective(1000px) rotateY(-10deg);
+        transform: perspective(1000px) rotateY(-10deg);
+    }
+
+    70% {
+        -webkit-transform: perspective(1000px) rotateY(10deg);
+        -ms-transform: perspective(1000px) rotateY(10deg);
+        transform: perspective(1000px) rotateY(10deg);
+    }
+
+    100% {
+        -webkit-transform: perspective(1000px) rotateY(0deg);
+        -ms-transform: perspective(1000px) rotateY(0deg);
+        transform: perspective(1000px) rotateY(0deg);
+    }
+}
+
+.slowFlipInY {
+    -webkit-backface-visibility: visible !important;
+    -ms-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-animation-name: slowFlipInY;
+    animation-name: slowFlipInY;
+}
+
 @-webkit-keyframes flipOutX {
     0% {
         -webkit-transform: perspective(400px) rotateX(0deg);
@@ -1871,6 +1927,41 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     backface-visibility: visible !important;
     -webkit-animation-name: flipOutY;
     animation-name: flipOutY;
+}
+
+
+@-webkit-keyframes slowFlipOutY {
+    0% {
+        -webkit-transform: perspective(1000px) rotateY(0deg);
+        transform: perspective(1000px) rotateY(0deg);
+    }
+
+    100% {
+        -webkit-transform: perspective(1000px) rotateY(90deg);
+        transform: perspective(1000px) rotateY(90deg);
+    }
+}
+
+@keyframes slowFlipOutY {
+    0% {
+        -webkit-transform: perspective(1000px) rotateY(0deg);
+        -ms-transform: perspective(1000px) rotateY(0deg);
+        transform: perspective(1000px) rotateY(0deg);
+    }
+
+    100% {
+        -webkit-transform: perspective(1000px) rotateY(90deg);
+        -ms-transform: perspective(1000px) rotateY(90deg);
+        transform: perspective(1000px) rotateY(90deg);
+    }
+}
+
+.slowFlipOutY {
+    -webkit-backface-visibility: visible !important;
+    -ms-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-animation-name: slowFlipOutY;
+    animation-name: slowFlipOutY;
 }
 
 @-webkit-keyframes lightSpeedIn {

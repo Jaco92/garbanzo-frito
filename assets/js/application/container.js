@@ -21,12 +21,9 @@ var container = {
         switch (id) {
             case 'launcher_right_menu': {
 
-                /**
-                 * TODO: Si se agrega la clase wow aqui da un brinco la animacion
-                 */
-                // if (!this.jQObject.hasClass('wow')) {
-                //     this.jQObject.addClass('wow');
-                // }
+                if (!this.jQObject.hasClass('wow')) {
+                    this.jQObject.addClass('wow');
+                }
                 if (!this.jQObject.hasClass('animated')) {
                     this.jQObject.addClass('animated');
                 }
@@ -35,8 +32,8 @@ var container = {
                 this.jQObject.css('animation-name', 'fadeOutTransparent');
                 this.jQObject.addClass('fadeOutTransparent');
                 currContainer = this.jQObject;
-                timer(1100, function () {
-                //     currContainer.removeClass('wow');
+                timer(900, function () {
+                    currContainer.removeClass('wow');
                     currContainer.removeClass('animated');
                     currContainer.addClass('hidden');
                 });
@@ -57,7 +54,7 @@ var container = {
                 this.jQObject.css('animation-name', realAnimationOut);
                 this.jQObject.addClass(realAnimationOut);
                 currContainer = this.jQObject;
-                timer(1100, function () {
+                timer(900, function () {
                     container.jQObject.removeClass('wow');
                     container.jQObject.removeClass('animated');
                     currContainer.addClass('hidden');
@@ -115,7 +112,7 @@ var container = {
                 this.jQObject.removeClass(realAnimationOut);
                 this.jQObject.css('animation-name', realAnimationIn);
                 this.jQObject.addClass(realAnimationIn);
-                timer(1100, function () {
+                timer(1000, function () {
                     container.jQObject.removeClass('wow');
                     container.jQObject.removeClass('animated');
                 });

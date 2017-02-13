@@ -272,3 +272,55 @@ function isVisible(id) {
         return false;
 
 }
+
+function showCatImg($element) {
+    $element.css('z-index', '250');
+    $element.find('.category_out').each(function () { //encotrar dentro de la categorya los elementos que salieron en el hover
+        //animar los elementos que salieron para que vuelvan a entrar
+        if (!$j(this).hasClass('wow'))
+            $j(this).addClass('wow');
+        if (!$j(this).hasClass('animated'))
+            $j(this).addClass('animated');
+        $j(this).removeClass('slowFlipOutY');
+        $j(this).css('animation-name', 'slowFlipInY');
+        $j(this).addClass('slowFlipInY');
+        $j(this).removeClass('hidden');
+    });
+    $element.find('.category_in').each(function () { //encotrar dentro de la categorya los elementos que entran
+        //animar los elementos de salida
+        if (!$j(this).hasClass('wow'))
+            $j(this).addClass('wow');
+        if (!$j(this).hasClass('animated'))
+            $j(this).addClass('animated');
+        $j(this).removeClass('slowFlipInY');
+        $j(this).css('animation-name', 'slowFlipOutY');
+        $j(this).addClass('slowFlipOutY');
+        $j(this).addClass('hidden');
+    });
+}
+
+function showCatDetails($element) {
+    $element.css('z-index', '500');
+    $element.find('.category_out').each(function () { //encotrar dentro de la categorya los elementos que salen
+        //animar los elementos de salida
+        if (!$j(this).hasClass('wow'))
+            $j(this).addClass('wow');
+        if (!$j(this).hasClass('animated'))
+            $j(this).addClass('animated');
+        $j(this).removeClass('slowFlipInY');
+        $j(this).css('animation-name', 'slowFlipOutY');
+        $j(this).addClass('slowFlipOutY');
+        $j(this).addClass('hidden');
+    });
+    $element.find('.category_in').each(function () { //encotrar dentro de la categorya los elementos que entran
+        //animar los elementos de salida
+        if (!$j(this).hasClass('wow'))
+            $j(this).addClass('wow');
+        if (!$j(this).hasClass('animated'))
+            $j(this).addClass('animated');
+        $j(this).removeClass('slowFlipOutY');
+        $j(this).css('animation-name', 'slowFlipInY');
+        $j(this).addClass('slowFlipInY');
+        $j(this).removeClass('hidden');
+    });
+}

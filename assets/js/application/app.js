@@ -34,12 +34,13 @@ var app = {
 
         //Inicializando los listeners
         listeners.l1();
-        listeners.l2();
-        listeners.l3();
+        // listeners.l2();
+        // listeners.l3();
         listeners.l4();
 
+        listeners.menuOptionClick();
         listeners.changeDiapo();
-        listeners.menuButtonClick();
+        listeners.launcherButtonClick();
         listeners.backdropListener();
 
         this.loadThemeSelector();
@@ -69,24 +70,19 @@ var app = {
         container.initDiapoContainer();
         fixImgDiapoRoute(container.jQObject);
         initWow();
-        /**
-         * TODO: Revisa esto
-         * Supuestamente es mostrar el menu_launcher cuando se carga la diapo
-         * si no esta mostrado, pero tiene problemas
-         */
-        // if (!isVisible('#launcher_right_menu')){
-        //     container.initLauncherMenuContainer();
-        //     container.show('');
-        //     console.log('no is visible');
-        // }
-        // else
-        //     console.log('is visible');
+        if (!isVisible('#launcher_right_menu')){
+            container.initLauncherMenuContainer();
+            container.show('');
+        }
     },
 
     closeDiapo: function () {
-        this.closeDiapoContainer('slide-Right');
+        // this.closeDiapoContainer('slide-Right');
+        this.setCurrTheme('');
         this.setCurrConference('');
         this.setCurrDiapo('');
+        container.initLauncherMenuContainer();
+        container.hide('');
         listeners.offChangeDiapo();
     },
 
@@ -116,7 +112,26 @@ var app = {
 
     loadConference: function (theme, conference) {
         this.setCurrTheme(theme);//actualizo el tema
-        this.setCurrConference(conference);//actualizo la conferencia        
+        this.setCurrConference(conference);//actualizo la conferencia
+        this.loadDiapo(theme, conference, 1);
+    },
+
+    resetConference: function () {
+        if (this.currConference && this.currTheme){
+            this.loadDiapo(this.currTheme, this.currConference, 1);
+        }
+    },
+
+    beforeConference: function () {
+        if (this.currConference && this.currTheme){
+            this.loadDiapo(this.currTheme, parseInt(this.currConference)-1, 1);
+        }
+    },
+
+    nextConference: function () {
+        if (this.currConference && this.currTheme){
+            this.loadDiapo(this.currTheme, parseInt(this.currConference)+1, 1);
+        }
     },
 
     nextDiapo: function () {
@@ -127,29 +142,41 @@ var app = {
         this.loadDiapo(this.currTheme, this.currConference, this.currDiapo - 1);
     },
 
+    animateOut: function () {
+        var delayOut = 0;
+        container.initDiapoContainer();
+        container.jQObject.find('.animateOut').each(function () {
+            delayOut = 1; //demorar la salida si se encontro alguna animateOut
+            $current = $j(this);
+
+            var inAnimation = $current.data('animatein');
+            var outAnimation = $current.data('animateout');
+
+            //definir una animacion de salida para todos los elementos que tengan la clase animateOut
+            if (!$current.hasClass('wow'))
+                $current.addClass('wow');
+            if (!$current.hasClass('animated'))
+                $current.addClass('animated');
+            if (!$current.hasClass(inAnimation))
+                $current.removeClass(inAnimation);
+            $current.css('animation-name', outAnimation);
+            $current.addClass(outAnimation);
+
+
+        });
+
+        return delayOut;
+    },
+
     //Cargar diapositiva a partir del tema, la conferencia y el # de diapo
     loadDiapo: function (theme, conference, diapo) {
-        container.initDiapoContainer();
         var delayOut = 0; //boolean para demorar la salida de la diapositiva en false
-        if (this.currDiapo){
-            container.jQObject.find('.animateOut').each(function () {
-                delayOut = 1; //demorar la salida si se encontro alguna animateOut
-                $current = $j(this);
-
-                //definir una animacion de salida para todos los elementos que tengan la clase animateOut
-                if (!$current.hasClass('wow'))
-                    $current.addClass('wow');
-                if (!$current.hasClass('animated'))
-                    $current.addClass('animated');
-                $current.removeClass('lightSpeedIn');
-                $current.css('animation-name', 'lightSpeedOut');
-                $current.addClass('hinge');
-
-            })
+        if (this.currConference && conference > 0 && this.currDiapo && diapo > 0){ //si existe alguna diapositiva y la siguiente no es la primera
+            delayOut = this.animateOut();
         }
 
-        timer((delayOut ? 1000 : 1), function () {//si hay animacion de salida demorar la carga siguiente
-
+        timer((delayOut ? 950 : 1), function () {//si hay animacion de salida demorar la carga siguiente
+            container.initDiapoContainer();
             route = getDiapoRoute(theme, conference, diapo);
             //Cargo en el contenedor actual la diapositiva indicada
             container.jQObject.load(route, function (response, status, xhr) {
@@ -206,10 +233,24 @@ var app = {
      */
     loadCategoryFragment: function (category, categoryElement) {
         container.initDiapoContainer();
+        container.jQObject.find('.category_selector').each(function () {
+            var $this = $j(this);
+            if ($this.attr('id') == '_'+categoryElement){ //si se encuentra el elemento clickeado
+                $this.attr('type', 'open'); //setear el atributo type a 'open'
+            }
+            else if ($this.attr('type') == 'open') { //si se encuentra el elemento abierto
+                showCatImg($this); //iniciar la animacion para mostrar la imagen y no los detalles
+                $this.removeAttr('type'); //remover el atributo type para continuar animandose
+            }
+            else { //por default remover el attr
+                $this.removeAttr('type'); //remover el atributo type
+            }
+        });
         container.jQObject.find('.category_container').load('views/category_'+category+'/element_'+categoryElement+'.html', //seleccionar el container de la categoria
             function (response, status, xhr) {
             if (status == 'success') {
                 resizeImg();
+                listeners.openConferenceClick();
             }
         });
     },
