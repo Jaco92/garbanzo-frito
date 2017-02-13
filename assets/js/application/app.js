@@ -98,6 +98,9 @@ var app = {
     closeRightMenuContainer: function (animation) {
         container.initRigthMenuContainer();
         container.hide(animation);
+        container.initLauncherMenuContainer();
+        if (container.jQObject.hasClass('launcher_right_menu_opacity'))
+            container.jQObject.removeClass('launcher_right_menu_opacity'); //devolver la opacidad del 50% al boton del menu
     },
     openDiapoContainer: function (animation) {
         container.initDiapoContainer();

@@ -92,9 +92,6 @@ var listeners = {
                 }
                 timer(200, function () {
                     app.closeRightMenuContainer('slide-Right');
-                    container.initLauncherMenuContainer();
-                    if (container.jQObject.hasClass('launcher_right_menu_opacity'))
-                        container.jQObject.removeClass('launcher_right_menu_opacity'); //devolver la opacidad del 50% al boton del menu
                 });
             });
         })
