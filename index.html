@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>    
     <link rel="stylesheet" href="assets/css/customs_fonts.css">
     <link rel="stylesheet" href="assets/css/grid_layout.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 
     <meta charset="UTF-8">
     <title>Habana Club Multimedia</title>
@@ -12,13 +15,13 @@
 <body>
 
 <div class="container" id="background">
-    <div id="overlay"></div>
 </div>
 
 <div class="container hidden" id="right_menu_container">
     <div class="row_4">
 
         <div id="backdrop" class="col_4">
+    <div id="overlay"></div>
 
         </div>
         <div class="col_3">
@@ -55,7 +58,8 @@
 
             <div style="position: relative; float: left; width: 33.33%!important; height: 100%!important">
                 <div style="height: 25%">
-                    <h3 id="full_screen" class="menu_option text_human red center_vertical menu_text">pantalla completa</h3>
+                    <h3 id="full_screen" class="hidden menu_option text_human red center_vertical menu_text">pantalla completa</h3>
+                    <h3 id="exit_full_screen" class="menu_option text_human red center_vertical menu_text">salir de pantalla completa</h3>
                 </div>
                 <div style="height: 25%">
                     <h3 id="next_conference" class="menu_option text_human red center_vertical menu_text">ver conf. siguiente</h3>
@@ -89,13 +93,17 @@
 
     <!-- Libraries scripts -->
     <script type="text/javascript" src="assets/js/libraries/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/libraries/require.js"></script>
+
+    <script type="text/javascript" src="assets/js/libraries/bootstrap.js"></script>
     <script>var $j = jQuery.noConflict();</script>
     <script type="text/javascript" src="assets/js/libraries/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="assets/js/libraries/wow.min.js"></script>
     <!-- ******************** -->
 
-    <!-- Application scripts -->
+    <!-- Application scripts -->    
     <script type="text/javascript" src="assets/js/application/listeners.js"></script>
+    <script type="text/javascript" src="assets/js/application/notes.js"></script>
     <script type="text/javascript" src="assets/js/application/common.js"></script>
     <script type="text/javascript" src="assets/js/application/container.js"></script>
     <script type="text/javascript" src="assets/js/application/app.js"></script>
@@ -103,5 +111,76 @@
     <!-- ******************** -->
 
 </footer>
+
+    
+            
+<!--NOTES *************************** -->
+
+                <div class="layout-panel windows-layout-notes hidden">
+                    <div class="master-panel-holder">
+                        <a class="btn btn-default show-master-tools-bt" href="javascript:void(0);"><i class="fa fa-chevron-right"></i></a>
+                        <div class="master-panel">
+                            <div class="master-panel-content">
+                                <div style="display: block;" class="row_1">
+                                    <div class="col_3">
+                                        <div class="text-right margin-bottom-10">
+                                            <span class="font-1-size-bt btn btn-default"><i style="color: #CCCCCC; font-size: 10px;" class="fa fa-font"></i></span>
+                                            <span class="font-2-size-bt btn btn-default"><i style="color: #999999; font-size: 12px;" class="fa fa-font"></i></span>
+                                            <span class="font-3-size-bt btn btn-default"><i style="color: #333333;" class="fa fa-font"></i></span>
+                                            <a class="ignore-link add-note-bt btn btn-default" data-toggle="modal" href="#default_modal_dialog"><i class="fa fa-plus"></i></a>
+                                            <span class="hide-master-tools-bt btn btn-default"><i class="fa fa-chevron-left"></i></span>
+                                        </div>
+                                        <div class="notes-section">            
+                                            <div class="alert alert-info text-center">
+                                                No hay notas asociadas a esta ubicación
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>             
+   
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="default_modal_dialog" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+                <h4 class="modal-title">Nota</h4>
+            </div>
+            <div class="modal-body text-center">
+                <div class="margin-bottom-10">
+                    <select name="noteType" id="noteType" class="form-control">
+                        <option value="1">Verde</option>
+                        <option value="2">Azul</option>
+                        <option value="3">Rojo</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea placeholder="Contenido de la nota" class="form-control" rows="10" cols="30" id="noteContent" name="noteContent"></textarea>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-success save-note-bt" type="button">Crear</button>
+                <button data-dismiss="modal" class="btn default" type="button">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">
+   $j(window).load(function(){
+
+        $j('.windows-layout-notes .master-panel-content .row').css({display:'block'});        
+
+       $j(".header-holder").css({'left':-$j(window).width(),'right':$j(window).width()});
+
+        });
+    </script>
+<!-- notes end********************************************************************* -->
+
+
 </body>
 </html>

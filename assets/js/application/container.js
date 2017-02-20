@@ -60,9 +60,12 @@ var container = {
                     currContainer.addClass('hidden');
                 });
 
-                $backdrop = $j('#overlay');
-                $backdrop.removeClass('overlay');
-
+                /*$backdrop = $j('#overlay');                
+                $backdrop.removeClass('backdrop');
+                $backdrop.removeClass('fade');
+                $backdrop.removeClass('in');
+                $backdrop.addClass('out');
+                */
                 $launcher_menu = $j('#launcher_rigth_menu');
                 $launcher_menu.removeClass('launcher_rigth_menu_opacity');
 
@@ -116,9 +119,12 @@ var container = {
                     container.jQObject.removeClass('wow');
                     container.jQObject.removeClass('animated');
                 });
-
-                $backdrop = $j('#overlay');
-                $backdrop.addClass('overlay');
+                timer(1000, function () {
+                /*$backdrop = $j('#overlay');
+                $backdrop.addClass('backdrop');
+                $backdrop.addClass('fade');
+                $backdrop.addClass('in');*/
+                });                
 
                 $launcher_menu = $j('#launcher_rigth_menu');
                 $launcher_menu.addClass('launcher_rigth_menu_opacity');

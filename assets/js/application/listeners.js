@@ -220,10 +220,105 @@ var listeners = {
             $this = $j(this); //obtener el elemento actual
             $this.click(listeners.openConference);
         })
+    },
+
+    /*Add a note when button create in modal is clicked*/
+    addNote: function(){
+        $j('.save-note-bt').click(function(){
+            var noteContent = $j("#noteContent").val();
+            if($j.trim(noteContent) != "")
+            {
+                var type = $j("#noteType").val();
+                var id = 1;
+                var ids = [];
+                $j(".alert").each(function(){
+                    if($j(this).data("id")!=null)
+                    {
+                        ids.push($j(this).data("id"));
+                    }
+                });
+                while(ids.indexOf(id.toString())>-1)
+                {
+                    id++;
+                }
+                notes.addNote(app.currCategory,app.currTheme, app.currConference.toString(), app.currDiapo,id,noteContent,type);
+                notes.displayNotes();
+            }
+            $j("#noteContent").val("");
+            $j("#noteType").val("1");
+
+        });
+    },
+
+    removeNote: function(){
+         $(".remove-note-btn").click(function(){
+                    note.deleteNote($j(this).data("id"));
+                    note.displayNotes();
+                });
+    },
+
+    resizeNoteText: function(){
+
+         $j(".font-1-size-bt").click(function(){
+            $j(".notes-section").css("font-size","14px");
+        });
+
+        $j(".font-2-size-bt").click(function(){
+            $j(".notes-section").css("font-size","20px");
+        });
+
+        $j(".font-3-size-bt").click(function(){
+            $j(".notes-section").css("font-size","28px");
+        });
+    },
+
+    showNoteSection: function(){
+        $j('#notes').click(function(){            
+            notes.showNotesSection();
+        });
+
+    },
+     hideNoteSection: function(){
+        $j('.hide-master-tools-bt').click(function(){            
+            notes.hideNotesSection();
+        });
+
+    },
+    /*openProjector: function(){
+    $(".open-projector").click(function(){
+                Tools.State.createProjector();
+                Tools.Layout.updateScale();
+                Tools.Layout.updateNotesContent();
+          });
+    },*/
+    goToTheme: function(){
+    $j('#go_theme').click(function(){                
+        app.loadCategory(app.currCategory);
+    });
+    },
+
+    exit: function(){
+        $j('#exit').click(function(){
+        app.exit();
+        });
+        
+    },
+
+    fullScreen: function(){
+    $j("#full_screen").click(function(){
+                app.state.fullScreen();
+                $j(this).addClass('hidden');
+                $j("#exit_full_screen").removeClass('hidden');
+            });    
+    },
+    exitFullScreen: function(){
+    $j("#exit_full_screen").click(function(){
+                app.state.maximize();
+                $j(this).addClass('hidden');
+                $j("#full_screen").removeClass('hidden');
+        });    /**/
     }
-
-
-};
+}
 /****************************************************/
 
 

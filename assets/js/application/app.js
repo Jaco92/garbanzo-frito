@@ -19,7 +19,8 @@ var app = {
 
 
     //Metodo que se ejecuta cuando document.ready
-    onReady: function () {
+    onReady: function () {       
+
 
         /*
          * TODO: Only for test
@@ -38,10 +39,40 @@ var app = {
         // listeners.l3();
         listeners.l4();
 
+
+        /*Main menu options*/
         listeners.menuOptionClick();
         listeners.changeDiapo();
         listeners.launcherButtonClick();
         listeners.backdropListener();
+        listeners.showNoteSection();
+        listeners.fullScreen();
+        listeners.exitFullScreen();
+        listeners.goToTheme();
+        listeners.exit();
+        /***********************************/
+
+
+         /*
+         * TODO: 
+         * Cuando terminemos todo buscamos la forma de agrupar los listeners 
+         * porque si no se nos forma tremendo reguero en el codigo 
+         */
+         /*
+         * TODO: Only for test
+         * Estoy programando en sublime y todo el cod est'a desorganizado
+         * Cuando terminemos refactorizamos todo con PHP Storm porque si lo hacemos ahora los palos en el github van a ser de p...
+         * 
+         */
+    
+         /*Notes Listeners*/
+        listeners.addNote();
+        listeners.resizeNoteText();
+        listeners.hideNoteSection();
+        /*****************************/
+
+
+    
 
         this.loadThemeSelector();
 
@@ -52,6 +83,31 @@ var app = {
 
     },
 
+    state:{
+        close: function(){
+            if(window.RemoteTools != undefined && window.RemoteTools != null){
+                window.close();
+            }else{
+                var gui = require('nw.gui');
+                gui.App.closeAllWindows();
+            }
+        },
+        maximize: function(){
+            var gui = require('nw.gui');
+            var nwWin = gui.Window.get();
+            nwWin.leaveFullscreen();
+            nwWin.maximize();
+            $j("body").removeClass("full-screen-mode");
+            $j("body").addClass("maximized-mode");
+        },
+        fullScreen: function(){
+            var gui = require('nw.gui');
+            var nwWin = gui.Window.get();
+            nwWin.enterFullscreen();
+            $j("body").addClass("full-screen-mode");
+            $j("body").removeClass("maximized-mode");
+        },
+    },
 
     onResize: function () {
         resizeHeight();
@@ -74,6 +130,8 @@ var app = {
             container.initLauncherMenuContainer();
             container.show('');
         }
+        notes.loadNotes();//Cargo las notas asociadas a esta diapositiva
+        notes.displayNotes();//Las muestro
     },
 
     closeDiapo: function () {
@@ -228,6 +286,8 @@ var app = {
 
     },
 
+
+
     /**
      * Cargar el tema dentro de una categoria
      *
@@ -258,11 +318,17 @@ var app = {
         });
     },
 
+    exit: function(){
+    var gui = require('nw.gui');            
+    var win = gui.Window.get();
+    win.close();
+    },
+
     setCurrTheme: function (currTheme) {
         this.currTheme = currTheme;
     },
     setCurrConference: function (currConference) {
-        this.currConference = currConference;
+        this.currConference = currConference.toString();
     },
     setCurrDiapo: function (currDiapo) {
         this.currDiapo = currDiapo;
