@@ -201,7 +201,32 @@ function showAllimages() {
     var $container = $j('#diapo_container');
     var $images = $container.find('.image');
     $images.each(function () {
-        // $j(this).fadeIn('fast');
+
+        // remover la animacion de entrada
+        var $this = $j(this);
+        var animateIn = $this.data('animatein');
+        if (!$this.hasClass('wow'))
+            $this.addClass('wow');
+        if (!$this.hasClass('animated'))
+            $this.addClass('animated');
+        if ($this.hasClass(animateIn))
+            $this.removeClass(animateIn);
+        $this.css('animation-name', '');
+
+
+        // var $this = $j(this);
+        //
+        // var animateOut = $this.data('animateout');
+        // var animateIn = $this.data('animatein');
+        //
+        // if (!$this.hasClass('wow'))
+        //     $this.addClass('wow');
+        // if (!$this.hasClass('animated'))
+        //     $this.addClass('animated');
+        // if ($this.hasClass(animateOut))
+        //     $this.removeClass(animateOut);
+        // $this.css('animation-name', animateIn);
+        // $this.addClass(animateIn);
         $j(this).removeClass('hidden');
     });
 }
@@ -232,14 +257,17 @@ function reorderHoverIn($current) {
     switch ($id) {
         case 'image_index_2' : {
             $current.removeClass('col_offset_2');
+            $current.addClass('col_offset_5');
             break;
         }
         case 'image_index_4' : {
             $current.removeClass('col_offset_3');
+            $current.addClass('col_offset_4');
             break;
         }
         case 'image_index_6' : {
             $current.removeClass('col_offset_4');
+            $current.addClass('col_offset_6');
             break;
         }
     }
@@ -250,14 +278,17 @@ function reorderHoverOut($current) {
     $id = $current.attr('id');
     switch ($id) {
         case 'image_index_2' : {
+            $current.removeClass('col_offset_5');
             $current.addClass('col_offset_2');
             break;
         }
         case 'image_index_4' : {
+            $current.removeClass('col_offset_4');
             $current.addClass('col_offset_3');
             break;
         }
         case 'image_index_6' : {
+            $current.removeClass('col_offset_6');
             $current.addClass('col_offset_4');
             break;
         }

@@ -281,5 +281,8 @@
     position: fixed;
     right: 0;
     top: 0;
- 
+}
+
+.back_arrow:hover {
+    cursor: pointer;
 }

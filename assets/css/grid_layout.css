@@ -152,6 +152,21 @@ div.center_vertical {
     width: 100%;
     max-width: 100%;
     overflow: hidden !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.back_arrow_container {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+}
+
+.back_arrow {
+    position: absolute !important;
+    left: 15% !important;
+    top: 15% !important;
+    z-index: 500 !important;
 }
 
 .row:before, .row:after, .container:before, .container:after {

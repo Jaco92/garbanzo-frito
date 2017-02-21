@@ -45,11 +45,11 @@ var app = {
         listeners.changeDiapo();
         listeners.launcherButtonClick();
         listeners.backdropListener();
-        listeners.showNoteSection();
-        listeners.fullScreen();
-        listeners.exitFullScreen();
-        listeners.goToTheme();
-        listeners.exit();
+        // listeners.showNoteSection();
+        // listeners.fullScreen();
+        // listeners.exitFullScreen();
+        // listeners.goToTheme();
+        // listeners.exit();
         /***********************************/
 
 
@@ -247,8 +247,8 @@ var app = {
                     app.setCurrDiapo(diapo);//actualizo el # de diapositiva
                     app.setCurrDiapoRoute(route);//actualizo la ruta
                     app.openDiapoContainer('slide-Right');
-                    app.onLoadDiapo();//Aviso a la app que se acaba de cargar una diapo
                     resizeImg();
+                    app.onLoadDiapo();//Aviso a la app que se acaba de cargar una diapo
                 }
             });
 
@@ -280,6 +280,7 @@ var app = {
                 app.setCurrDiapoRoute('');//actualizo la ruta
                 listeners.categoryImageClick();
                 listeners.categorySelectorHover();
+                listeners.backArrow();
                 resizeImg();
             }
         });

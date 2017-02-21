@@ -58,6 +58,7 @@ var listeners = {
                         break;
                     }
                     case 'notes': {
+                        notes.showNotesSection();
                         break;
                     }
                     case 'project': {
@@ -71,15 +72,26 @@ var listeners = {
                         var delay = app.animateOut();
                         delay = delay ? 1000 : 1;
                         app.closeDiapo();
+                        app.closeTheme();
                         timer(delay, function () {
                             app.loadThemeSelector();
                         });
                         break;
                     }
                     case 'exit': {
+                        app.exit();
+                        break;
+                    }
+                    case 'exit_full_screen': {
+                        app.state.maximize();
+                        $this.addClass('hidden');
+                        $j("#full_screen").removeClass('hidden');
                         break;
                     }
                     case 'full_screen': {
+                        app.state.fullScreen();
+                        $this.addClass('hidden');
+                        $j("#exit_full_screen").removeClass('hidden');
                         break;
                     }
                     case 'next_conference': {
@@ -87,6 +99,12 @@ var listeners = {
                         break;
                     }
                     case 'go_theme': {
+                        var delay = app.animateOut();
+                        delay = delay ? 1000 : 1;
+                        app.closeDiapo();
+                        timer(delay, function () {
+                            app.loadCategory(app.currCategory);
+                        });
                         break;
                     }
                 }
@@ -272,12 +290,6 @@ var listeners = {
         });
     },
 
-    showNoteSection: function(){
-        $j('#notes').click(function(){            
-            notes.showNotesSection();
-        });
-
-    },
      hideNoteSection: function(){
         $j('.hide-master-tools-bt').click(function(){            
             notes.hideNotesSection();
@@ -291,37 +303,16 @@ var listeners = {
                 Tools.Layout.updateNotesContent();
           });
     },*/
-    goToTheme: function(){
-    $j('#go_theme').click(function(){                
-        app.loadCategory(app.currCategory);
-    });
-    },
 
-    exit: function(){
-        $j('#exit').click(function(){
-        app.exit();
+    backArrow: function(){
+        $j('.back_arrow').click(function(){
+            app.closeDiapo();
+            app.closeTheme();
+            app.loadThemeSelector();
         });
-        
-    },
-
-    fullScreen: function(){
-    $j("#full_screen").click(function(){
-                app.state.fullScreen();
-                $j(this).addClass('hidden');
-                $j("#exit_full_screen").removeClass('hidden');
-            });    
-    },
-    exitFullScreen: function(){
-    $j("#exit_full_screen").click(function(){
-                app.state.maximize();
-                $j(this).addClass('hidden');
-                $j("#full_screen").removeClass('hidden');
-        });    /**/
     }
-}
-/****************************************************/
+};
 
 
 
-        
-     
+
