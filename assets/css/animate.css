@@ -67,6 +67,141 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     animation-name: bounce;
 }
 
+@-webkit-keyframes scaleInLeft {
+    0% {
+        -webkit-transform: scale(0, 1);
+        transform: scale(0, 1);
+        transform-origin: left;
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        transform-origin: left;
+    }
+}
+
+@keyframes scaleInLeft {
+    0% {
+        -webkit-transform: scale(0, 1);
+        -ms-transform: scale(0, 1);
+        transform: scale(0, 1);
+        transform-origin: left;
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        transform: scale(1, 1);
+        transform-origin: left;
+    }
+}
+
+@-webkit-keyframes scaleInRight {
+    0% {
+        -webkit-transform: scale(0, 1);
+        transform: scale(0, 1);
+        transform-origin: right;
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        transform-origin: right;
+    }
+}
+
+@keyframes scaleInRight {
+    0% {
+        -webkit-transform: scale(0, 1);
+        -ms-transform: scale(0, 1);
+        transform: scale(0, 1);
+        transform-origin: right;
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        transform: scale(1, 1);
+        transform-origin: right;
+    }
+}
+
+.scaleInRight {
+    -webkit-animation-name: scaleInRight;
+    animation-name: scaleInRight;
+}
+
+@-webkit-keyframes scaleOutRight {
+    0% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        transform-origin: right;
+    }
+
+    100% {
+        -webkit-transform: scale(0, 1);
+        transform: scale(0, 1);
+        transform-origin: right;
+    }
+}
+
+@keyframes scaleOutRight {
+    0% {
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        transform: scale(1, 1);
+        transform-origin: right;
+    }
+
+    100% {
+        -webkit-transform: scale(0, 1);
+        -ms-transform: scale(0, 1);
+        transform: scale(0, 1);
+        transform-origin: right;
+    }
+}
+
+.scaleOutRight {
+    -webkit-animation-name: scaleOutRight;
+    animation-name: scaleOutRight;
+}
+
+@-webkit-keyframes scaleOutLeft {
+    0% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        transform-origin: left;
+    }
+
+    100% {
+        -webkit-transform: scale(0, 1);
+        transform: scale(0, 1);
+        transform-origin: left;
+    }
+}
+
+@keyframes scaleOutLeft {
+    0% {
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        transform: scale(1, 1);
+        transform-origin: left;
+    }
+
+    100% {
+        -webkit-transform: scale(0, 1);
+        -ms-transform: scale(0, 1);
+        transform: scale(0, 1);
+        transform-origin: left;
+    }
+}
+
+.scaleOutLeft {
+    -webkit-animation-name: scaleOutLeft;
+    animation-name: scaleOutLeft;
+}
+
 @-webkit-keyframes flash {
     0%, 50%, 100% {
         opacity: 1;

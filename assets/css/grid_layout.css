@@ -52,6 +52,10 @@ h3 {
     background-color: white;
 }
 
+.black_background {
+    background-color: black;
+}
+
 .text_hide {
     font: 0/0 a;
     color: transparent;

@@ -286,3 +286,10 @@
 .back_arrow:hover {
     cursor: pointer;
 }
+
+.category_details {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative!important;
+    top: -100%!important;
+}

@@ -312,9 +312,9 @@ function showCatImg($element) {
             $j(this).addClass('wow');
         if (!$j(this).hasClass('animated'))
             $j(this).addClass('animated');
-        $j(this).removeClass('slowFlipOutY');
-        $j(this).css('animation-name', 'slowFlipInY');
-        $j(this).addClass('slowFlipInY');
+        $j(this).removeClass('scaleOutLeft');
+        $j(this).css('animation-name', 'scaleInLeft');
+        $j(this).addClass('scaleInLeft');
         $j(this).removeClass('hidden');
     });
     $element.find('.category_in').each(function () { //encotrar dentro de la categorya los elementos que entran
@@ -323,10 +323,12 @@ function showCatImg($element) {
             $j(this).addClass('wow');
         if (!$j(this).hasClass('animated'))
             $j(this).addClass('animated');
-        $j(this).removeClass('slowFlipInY');
-        $j(this).css('animation-name', 'slowFlipOutY');
-        $j(this).addClass('slowFlipOutY');
-        $j(this).addClass('hidden');
+        $j(this).removeClass('scaleInRight');
+        $j(this).css('animation-name', 'scaleOutRight');
+        $j(this).addClass('scaleOutRight');
+        timer(950, function () {
+            $j(this).addClass('hidden');
+        });
     });
 }
 
@@ -338,10 +340,12 @@ function showCatDetails($element) {
             $j(this).addClass('wow');
         if (!$j(this).hasClass('animated'))
             $j(this).addClass('animated');
-        $j(this).removeClass('slowFlipInY');
-        $j(this).css('animation-name', 'slowFlipOutY');
-        $j(this).addClass('slowFlipOutY');
-        $j(this).addClass('hidden');
+        $j(this).removeClass('scaleInLeft');
+        $j(this).css('animation-name', 'scaleOutLeft');
+        $j(this).addClass('scaleOutLeft');
+        timer(950, function () {
+            $j(this).addClass('hidden');
+        });
     });
     $element.find('.category_in').each(function () { //encotrar dentro de la categorya los elementos que entran
         //animar los elementos de salida
@@ -349,9 +353,9 @@ function showCatDetails($element) {
             $j(this).addClass('wow');
         if (!$j(this).hasClass('animated'))
             $j(this).addClass('animated');
-        $j(this).removeClass('slowFlipOutY');
-        $j(this).css('animation-name', 'slowFlipInY');
-        $j(this).addClass('slowFlipInY');
+        $j(this).removeClass('scaleOutRight');
+        $j(this).css('animation-name', 'scaleInRight');
+        $j(this).addClass('scaleInRight');
         $j(this).removeClass('hidden');
     });
 }
