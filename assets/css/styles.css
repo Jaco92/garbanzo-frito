@@ -335,7 +335,7 @@
 .item-thumbs .hover-wrap .overlay-img {
     background: #60A9CF none repeat scroll 0 0;
     height: 100%;
-    opacity: 0.8;
+    opacity: 0.9;
     position: absolute;
     width: 100%;
 }
@@ -381,6 +381,7 @@
     position: absolute;
     width: 100%;
 }
+
 .image-wrap .hover-wrap .overlay-text-thumb {
     color: #ffffff;
     font-size: 20px;
@@ -394,4 +395,28 @@
     text-transform: uppercase;
     top: 50%;
     width: 100%;
+}
+
+.red_background {
+    background: #cb3a2a!important;
+}
+
+.green_background {
+    background: #479a65!important;
+}
+
+.blue_background {
+    background: #17a0ca!important;
+}
+
+.green {
+    color: #479a65;
+}
+
+.blue {
+    color: #17a0ca;
+}
+
+.red {
+    color: #cb3a2a;
 }
