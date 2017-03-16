@@ -34,7 +34,7 @@ var app = {
 
 
         //Inicializando los listeners
-        listeners.l1();
+        //listeners.l1();
         // listeners.l2();
         // listeners.l3();
         listeners.l4();
@@ -279,7 +279,7 @@ var app = {
                 app.setCurrDiapo('');//actualizo el # de diapositiva
                 app.setCurrDiapoRoute('');//actualizo la ruta
                 listeners.categoryImageClick();
-                listeners.categorySelectorHover();
+                //listeners.categorySelectorHover();
                 listeners.backArrow();
                 resizeImg();
             }
@@ -301,22 +301,25 @@ var app = {
             var $this = $j(this);
             if ($this.attr('id') == '_'+categoryElement){ //si se encuentra el elemento clickeado
                 $this.attr('type', 'open'); //setear el atributo type a 'open'
+                $this.addClass('category_open');
             }
             else if ($this.attr('type') == 'open') { //si se encuentra el elemento abierto
-                showCatImg($this); //iniciar la animacion para mostrar la imagen y no los detalles
+                //showCatImg($this); //iniciar la animacion para mostrar la imagen y no los detalles
                 $this.removeAttr('type'); //remover el atributo type para continuar animandose
+                $this.removeClass('category_open');
             }
             else { //por default remover el attr
+                $this.removeClass('category_open');
                 $this.removeAttr('type'); //remover el atributo type
             }
         });
         container.jQObject.find('.category_container').load('views/category_'+category+'/element_'+categoryElement+'.html', //seleccionar el container de la categoria
             function (response, status, xhr) {
-            if (status == 'success') {
-                resizeImg();
-                listeners.openConferenceClick();
-            }
-        });
+                if (status == 'success') {
+                    resizeImg();
+                    listeners.openConferenceClick();
+                }
+            });
     },
 
     exit: function(){

@@ -305,3 +305,93 @@
 .a:hover {
     cursor: pointer;
 }
+
+/*Temas hover styles*/
+.item-thumbs {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+.item-thumbs a + img {
+    width: 100%;
+}
+.item-thumbs .hover-wrap {
+    display: block;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    transform: rotateY(180deg) scale(0.5, 0.5);
+    transition: all 450ms ease-out 0s;
+    width: 100%;
+}
+.item-thumbs.category_open .hover-wrap{
+    opacity: 1;
+    transform: rotateY(0deg) scale(1, 1);
+}
+.item-thumbs:hover .hover-wrap, .item-thumbs.active .hover-wrap {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1, 1);
+}
+.item-thumbs .hover-wrap .overlay-img {
+    background: #60A9CF none repeat scroll 0 0;
+    height: 100%;
+    opacity: 0.8;
+    position: absolute;
+    width: 100%;
+}
+.item-thumbs .hover-wrap .overlay-img-thumb {
+    color: #ffffff;
+    font-size: 32px;
+    line-height: 1em;
+    opacity: 1;
+    position: absolute;
+}
+.profile-name {
+    margin-bottom: 15px;
+}
+.profile-description {
+    margin-bottom: 25px;
+}
+.image-wrap {
+    cursor: pointer;
+    margin-bottom: 25px;
+    overflow: hidden;
+    position: relative;
+}
+.image-wrap img {
+    width: 100%;
+}
+.image-wrap .hover-wrap {
+    display: block;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    transform: rotateY(180deg) scale(0.5, 0.5);
+    transition: all 450ms ease-out 0s;
+    width: 100%;
+}
+.image-wrap:hover .hover-wrap, .image-wrap.active .hover-wrap {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1, 1);
+}
+.image-wrap .hover-wrap .overlay-img {
+    background: #de5e60 none repeat scroll 0 0;
+    height: 100%;
+    opacity: 0.8;
+    position: absolute;
+    width: 100%;
+}
+.image-wrap .hover-wrap .overlay-text-thumb {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 300;
+    height: 32px;
+    line-height: 32px;
+    margin: -16px 0 0;
+    opacity: 1;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 50%;
+    width: 100%;
+}
